@@ -1,10 +1,13 @@
+// Mengimpor tipe Request dan Response dari Express, serta model products dan Product
 import { Request, Response } from "express";
 import { products, Product } from "../models/product-model";
 
+// Fungsi untuk mendapatkan semua produk
 export const getProducts = (req: Request, res: Response) => {
   res.json(products);
 };
 
+// Fungsi untuk membuat produk baru
 export const createProduct = (req: Request, res: Response) => {
   // Menghasilkan ID unik untuk produk baru
   let newId: number;

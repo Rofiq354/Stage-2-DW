@@ -1,9 +1,11 @@
+// Mendefinisikan interface untuk objek Product
 export interface Product {
   id: number;
   name: string;
   price: number;
 }
 
+// Array yang menyimpan data produk awal
 export const products: Product[] = [
   {
     id: 1,

@@ -1,9 +1,11 @@
+// Mendefinisikan interface untuk objek Order
 export interface Order {
-  id: number;
-  productId: number;
-  quantity: number;
+  id: number; // ID unik pesanan
+  productId: number; // ID produk yang dipesan
+  quantity: number; // Jumlah produk yang dipesan
 }
 
+// Array yang menyimpan data pesanan awal
 export const orders: Order[] = [
   {
     id: 1,
