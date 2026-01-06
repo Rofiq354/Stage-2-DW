@@ -8,16 +8,15 @@ const app = express();
 app.use(express.json());
 
 // Menentukan port tempat server akan berjalan
-const PORT = 3000;
 
 // Mengimpor router untuk post dari file post-route
-import postRouter from "./routes/post-route";
+import productRouter from "./routes/product";
 
 // Menggunakan router post dengan prefix /api/v1
-app.use("/api/v1", postRouter);
+app.use("/api/v1", productRouter);
 
 // Memulai server dan mendengarkan pada port yang ditentukan
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
   // Mencetak pesan ke konsol bahwa server sedang berjalan
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${process.env.PORT || 3000}`);
 });
