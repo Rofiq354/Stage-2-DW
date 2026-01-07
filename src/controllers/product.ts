@@ -11,11 +11,42 @@ export const getProducts = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
+  const { sortBy, order, minPrice, maxPrice, limit, offset, stock } = req.query;
+
+  const filter: any = {};
+
+  if (minPrice) filter.price = { gte: parseFloat(minPrice as string) };
+  if (maxPrice)
+    filter.price = {
+      ...(filter.price || {}),
+      lte: parseFloat(maxPrice as string),
+    };
+
+  if (stock) filter.stock = Number(stock);
+
   try {
-    const products = await prisma.product.findMany();
+    const products = await prisma.product.findMany({
+      where: filter,
+      orderBy: {
+        [sortBy as string]: order as "asc" | "desc",
+      },
+      take: limit ? Number(limit) : undefined,
+      skip: offset ? Number(offset) : undefined,
+    });
+
+    const total = await prisma.product.count({ where: filter });
+
     return res
       .status(200)
-      .json({ message: "Data fetched successfully", data: products });
+      .json({
+        success: true,
+        data: products,
+        pagination: {
+          limit: limit ? Number(limit) : undefined,
+          offset: offset ? Number(offset) : undefined,
+        },
+        total: total,
+      });
   } catch (error) {
     return res.status(500).json({
       message: "Internal Server Error",
@@ -42,6 +73,7 @@ export const createProduct = async (
       data: {
         name: req.body.name,
         price: req.body.price,
+        stock: req.body.stock,
       },
     });
 
@@ -77,6 +109,7 @@ export const updateProduct = async (
       data: {
         name: req.body.name,
         price: req.body.price,
+        stock: req.body.stock,
       },
     });
     return res

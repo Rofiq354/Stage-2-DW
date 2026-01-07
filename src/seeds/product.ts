@@ -13,10 +13,17 @@ export async function seedProducts() {
       {
         name: "Product 1",
         price: 1000,
+        stock: 10,
       },
       {
         name: "Product 2",
         price: 2000,
+        stock: 5,
+      },
+      {
+        name: "Product 3",
+        price: 3000,
+        stock: 3,
       },
     ],
     skipDuplicates: true,

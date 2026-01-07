@@ -11,9 +11,11 @@ app.use(express.json());
 
 // Mengimpor router untuk post dari file post-route
 import productRouter from "./routes/product";
+import orderRouter from "./routes/order";
 
 // Menggunakan router post dengan prefix /api/v1
 app.use("/api/v1", productRouter);
+app.use("/api/v1", orderRouter);
 
 // Memulai server dan mendengarkan pada port yang ditentukan
 app.listen(process.env.PORT || 3000, () => {

@@ -8,7 +8,7 @@
     "dev": "ts-node-dev --respawn src/app.ts"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node src/prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
