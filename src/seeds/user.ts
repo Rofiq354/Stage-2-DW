@@ -15,10 +15,12 @@ export async function seedUsers() {
       {
         name: "User 1",
         email: "uQHtD@example.com",
+        points: 500
       },
       {
         name: "User 2",
         email: "l9lVt@example.com",
+        points: 100
       },
     ],
     skipDuplicates: true,
