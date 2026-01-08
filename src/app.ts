@@ -11,11 +11,13 @@ app.use(express.json());
 import productRouter from "./routes/product";
 import orderRouter from "./routes/order";
 import transferPointsRouter from "./routes/transfer-points";
+import supplierRouter from "./routes/supplier";
 
 // Menggunakan router post dengan prefix /api/v1
 app.use("/api/v1", productRouter);
 app.use("/api/v1", orderRouter);
 app.use("/api/v1", transferPointsRouter);
+app.use("/api/v1", supplierRouter);
 
 // Global Error Handler
 app.use((err: any, req: any, res: any, next: any) => {

@@ -26,8 +26,11 @@ model Product {
   id Int @id @default(autoincrement())
   name String
   price Int
-  stock Int
+  stock Int @default(0)
+
   orders Order[]
+  stockMovements StockMovement[]
+
   createdAt DateTime @default(now())
 }
 
@@ -36,7 +39,36 @@ model Order {
   userId Int
   productId Int
   quantity Int
+  priceAtOrder Int
 
   user User @relation(fields: [userId], references: [id])
   product Product @relation(fields: [productId], references: [id])
+
+  createdAt DateTime @default(now())
+}
+
+model Supplier {
+  id Int @id @default(autoincrement())
+  name String
+  noTelp String?
+
+  stockMovements StockMovement[]
+}
+
+model StockMovement {
+  id Int @id @default(autoincrement())
+  productId Int
+  supplierId Int?
+  quantity Int
+  type StockType
+
+  product Product @relation(fields: [productId], references: [id])
+  supplier Supplier? @relation(fields: [supplierId], references: [id])
+
+  createdAt DateTime @default(now())
+}
+
+enum StockType {
+  IN
+  OUT
 }

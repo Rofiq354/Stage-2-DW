@@ -15,16 +15,19 @@ export async function seedOrders() {
         userId: 1,
         productId: 1,
         quantity: 2,
+        priceAtOrder: 1000,
       },
       {
         userId: 1,
         productId: 2,
         quantity: 1,
+        priceAtOrder: 2000,
       },
       {
         userId: 2,
         productId: 1,
         quantity: 3,
+        priceAtOrder: 3000,
       },
     ],
   });

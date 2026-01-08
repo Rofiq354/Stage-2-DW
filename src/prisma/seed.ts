@@ -1,5 +1,8 @@
+import { PrismaClient } from "@prisma/client";
+
 import { seedOrders } from "../seeds/order";
 import { seedProducts } from "../seeds/product";
+import { seedSuppliers } from "../seeds/supplier";
 import { seedUsers } from "../seeds/user";
 
 /**
@@ -11,6 +14,7 @@ async function main() {
   await seedUsers();
   await seedProducts();
   await seedOrders();
+  await seedSuppliers();
 }
 
 main()
