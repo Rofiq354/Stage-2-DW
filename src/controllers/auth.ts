@@ -20,6 +20,13 @@ export const login = (req: Request, res: Response, next: NextFunction) => {
       expiresIn: "1h",
     });
 
+    res.cookie("token", token, {
+      httpOnly: true, // Keamanan: tidak bisa diakses JavaScript (XSS)
+      secure: true, // Hanya dikirim via HTTPS
+      sameSite: "strict", // Mencegah serangan CSRF
+      maxAge: 5000, // Masa berlaku cookie (5 detik dalam ms)
+    });
+
     res.status(200).json({ message: "Login successfully", data: user, token });
   } catch (error) {
     next(error);

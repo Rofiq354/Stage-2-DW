@@ -2,13 +2,18 @@ import express from "express";
 import productRouter from "./routes/product";
 import authRouter from "./routes/auth";
 import multer from "multer";
+import cookieParser from "cookie-parser";
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 app.use("/public", express.static("public"));
 
 app.use("/", productRouter);
 app.use("/auth", authRouter);
+app.get("/coockie", (req, res) => {
+  console.log("Signed Cookies: ", res);
+});
 
 app.use((err: any, req: any, res: any, next: any) => {
   if (err instanceof multer.MulterError) {

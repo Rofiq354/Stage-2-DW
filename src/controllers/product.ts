@@ -16,6 +16,7 @@ export const createProduct = (
     if (req.file) {
       data.image = req.file.filename;
     }
+
     res.status(201).json({ message: "create product success", data });
   } catch (error) {
     next(error);
