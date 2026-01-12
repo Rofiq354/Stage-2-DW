@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import productRouter from "./routes/product";
 import authRouter from "./routes/auth";
 import multer from "multer";
@@ -11,8 +12,8 @@ app.use("/public", express.static("public"));
 
 app.use("/", productRouter);
 app.use("/auth", authRouter);
-app.get("/coockie", (req, res) => {
-  console.log("Signed Cookies: ", res);
+app.get("/test", cors({ origin: "http://127.0.0.1:5500" }), (req, res) => {
+  res.status(200).json({ message: "Success!" });
 });
 
 app.use((err: any, req: any, res: any, next: any) => {
