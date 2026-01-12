@@ -27,12 +27,8 @@ const fileFilter = (req: Request, file: any, cb: any) => {
 
 const limits = {
   //   fileSize: 5 * 1024 * 1024, // 5 MB
-  fileSize: 500 * 1024,
+  fileSize: 500 * 1024, // 500 KB
   files: 3, // 3 files
 };
-
-if (limits.fileSize > 5 * 1024 * 1024) {
-  throw Error("Ukuran file terlalu besar. Maksimal 5 MB.");
-}
 
 export const upload = multer({ storage, fileFilter, limits });
